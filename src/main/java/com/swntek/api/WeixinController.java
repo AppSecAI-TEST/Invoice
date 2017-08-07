@@ -65,7 +65,7 @@ public class WeixinController extends WeixinControllerSupport {
     //不再强制重写，有加密需要时自行重写该方法
     @Override
     protected String getAESKey() {
-        return "q55Ch5P5513c582G55iwWCe8L8151clV3peLW5Ze8Ue";
+        return null;
     }
 
     //重写父类方法，处理对应的微信消息 返回null则表示不处理
