@@ -142,6 +142,7 @@ public abstract class WeixinSupport {
                         Article article = newsmsg.getArticles().get(0);
                         if(article.getTitle().equals("")){
                             try {
+                                System.out.println("页面跳转"+article.getUrl());
                                 response.sendRedirect(article.getUrl());
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -167,6 +168,7 @@ public abstract class WeixinSupport {
                     Article article = newsmsg.getArticles().get(0);
                     if(article.getTitle().equals("")){
                         try {
+                            System.out.println("页面跳转url"+article.getUrl());
                             response.sendRedirect(article.getUrl());
                         } catch (IOException e) {
                             e.printStackTrace();
