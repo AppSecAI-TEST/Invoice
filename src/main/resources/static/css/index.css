@@ -1,0 +1,78 @@
+body {
+	background-color: #fff;
+}
+.banner{
+	border-bottom: 1px solid #e5e5e5;
+	padding-left: 90px;
+	padding-right: 90px;
+	padding-top: 80px;
+	padding-bottom: 80px;
+}
+.banner img {
+
+}
+div > form > .inputs {
+	width: 100%;
+	height: 40px;
+	background-color: #fff;
+	border-radius: 2px;
+}
+div > form > .yzm {
+	border-bottom: 1px solid #e5e5e5;
+}
+
+div > form > p {
+	height: 1px;
+	border-bottom: 1px solid #e5e5e5;
+	margin-left: 3%;
+}
+div > form > .inputs > span {
+	line-height: 40px;
+	font-family: microsoft yahei;
+	padding-left: 10px;
+}
+div > form > .inputs > input{
+	height: 30px;
+	border:none;
+	margin-left: 30px;
+	width: 70%;
+	font-size: 16px;
+	outline: none
+}
+div > form > .yzm >input {
+	height: 30px;
+	border:none;
+	margin-left: 30px;
+	width: 40%;
+	font-size: 16px;
+	outline: none
+}
+div > form > .yzm >button {
+	height: 30px;
+	border:1px solid #0d3d7d;
+	color: #0d3d7d;
+	background-color: #fff;
+	border-radius: 5px;
+	font-family: microsoft yahei;
+	font-size: 16px;
+	outline: none;
+	width: 26%;
+	float: right;
+	margin-right: 15px;
+	margin-top:5px;
+	}
+form >button {
+	width: 90%;	
+	background-color: #0d3d7d;
+	height: 40px;
+	border:none;
+	outline: none;
+	color: #fff;
+	font-size: 20px;
+	font-family: microsoft yahei;
+	margin-top: 30px;
+	text-align: center;
+	border-radius: 5px;
+	margin-left: 5%;
+
+}
