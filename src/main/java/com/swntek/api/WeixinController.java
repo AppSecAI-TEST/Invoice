@@ -6,13 +6,16 @@ import com.github.sd4324530.fastweixin.api.enums.OauthScope;
 import com.github.sd4324530.fastweixin.api.response.OauthGetTokenResponse;
 import com.github.sd4324530.fastweixin.handle.EventHandle;
 import com.github.sd4324530.fastweixin.handle.MessageHandle;
+import com.github.sd4324530.fastweixin.message.Article;
 import com.github.sd4324530.fastweixin.message.BaseMsg;
+import com.github.sd4324530.fastweixin.message.NewsMsg;
 import com.github.sd4324530.fastweixin.message.TextMsg;
 import com.github.sd4324530.fastweixin.message.req.BaseEvent;
 import com.github.sd4324530.fastweixin.message.req.QrCodeEvent;
 import com.github.sd4324530.fastweixin.message.req.ScanCodeEvent;
 import com.github.sd4324530.fastweixin.message.req.TextReqMsg;
 import com.github.sd4324530.fastweixin.servlet.WeixinControllerSupport;
+import com.swntek.Utils.Constact;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -87,16 +90,27 @@ public class WeixinController extends WeixinControllerSupport {
     //参数二维码 已关注扫码
     @Override
     protected BaseMsg handleQrCodeEvent(QrCodeEvent event) {
-        System.out.println("event.getEventKey():"+event.getEventKey());
-        return new TextMsg("QrcodeEvent");
+        String shopid = event.getEventKey();
+        String openid=event.getFromUserName();
+        System.out.println("event.getEventKey():"+ shopid);
+        Article article=new Article("填写发票信息","填写发票信息","http://pic.58pic.com/58pic/12/21/22/54P58PICBkX.jpg", Constact.baseurl+"register.html?openid="+openid+"shopid="+shopid);
+        NewsMsg newsMsg=new NewsMsg();
+        newsMsg.add(article);
+        return newsMsg;
     }
     //参数二维码 未关注扫码
     @Override
     protected BaseMsg handleSubscribe(BaseEvent event) {
         //交给handler
         QrCodeEvent qrcodeevent =(QrCodeEvent) event;
-        System.out.println("event.getEventKey():"+qrcodeevent.getEventKey());
-        return new TextMsg("关注发票成功");
+        String eventKey = qrcodeevent.getEventKey();
+        String shopid=eventKey.split("_")[1];
+        String openid=event.getFromUserName();
+        Article article=new Article("填写发票信息","填写发票信息","http://pic.58pic.com/58pic/12/21/22/54P58PICBkX.jpg", Constact.baseurl+"register.html?openid="+openid+"shopid="+shopid);
+        NewsMsg newsMsg=new NewsMsg();
+        newsMsg.add(article);
+        System.out.println("event.getEventKey():"+ eventKey);
+        return newsMsg;
     }
 
     /*1.1版本新增，重写父类方法，加入自定义微信消息处理器
@@ -126,7 +140,7 @@ public class WeixinController extends WeixinControllerSupport {
         OauthAPI oauthAPI = new OauthAPI(apiConfig);
         System.out.println("code"+code+"shopid:"+shopid);
         if(code ==null) {
-            String wxauthurl = oauthAPI.getOauthPageUrl("http://wx.okayapple.cn/weixin/auth", OauthScope.SNSAPI_BASE, shopid);
+            String wxauthurl = oauthAPI.getOauthPageUrl(Constact.baseurl+"weixin/auth", OauthScope.SNSAPI_BASE, shopid);
             System.out.println("wxauthurl"+wxauthurl);
             response.sendRedirect(wxauthurl);
             return;
@@ -135,7 +149,7 @@ public class WeixinController extends WeixinControllerSupport {
             String openid = token.getOpenid();
             shopid = request.getParameter("state");
             System.out.println("getopenid():"+openid+"shopid:"+shopid);
-            response.sendRedirect("http://wx.okayapple.cn/register.html?openid="+openid+"&shopid="+shopid);
+            response.sendRedirect(Constact.baseurl+"register.html?openid="+openid+"&shopid="+shopid);
             return;
         }
     }
