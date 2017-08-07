@@ -1,5 +1,6 @@
 package com.fast.sd4324530.fastweixin.servlet;
 
+import org.apache.http.util.TextUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,11 +51,13 @@ public abstract class WeixinControllerSupport extends WeixinSupport {
     protected final void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (isLegal(request)) {
             String result = processRequest(request,response);
-            //设置正确的 content-type 以防止中文乱码
-            response.setContentType("text/xml;charset=UTF-8");
-            PrintWriter writer = response.getWriter();
-            writer.write(result);
-            writer.close();
+            if(!TextUtils.isEmpty(result)) {
+                //设置正确的 content-type 以防止中文乱码
+                response.setContentType("text/xml;charset=UTF-8");
+                PrintWriter writer = response.getWriter();
+                writer.write(result);
+                writer.close();
+            }
         }
     }
 }
