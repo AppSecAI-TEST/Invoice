@@ -9,6 +9,8 @@ import com.github.sd4324530.fastweixin.handle.MessageHandle;
 import com.github.sd4324530.fastweixin.message.BaseMsg;
 import com.github.sd4324530.fastweixin.message.TextMsg;
 import com.github.sd4324530.fastweixin.message.req.BaseEvent;
+import com.github.sd4324530.fastweixin.message.req.QrCodeEvent;
+import com.github.sd4324530.fastweixin.message.req.ScanCodeEvent;
 import com.github.sd4324530.fastweixin.message.req.TextReqMsg;
 import com.github.sd4324530.fastweixin.servlet.WeixinControllerSupport;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
@@ -78,8 +80,22 @@ public class WeixinController extends WeixinControllerSupport {
     }
 
     @Override
+    protected BaseMsg handleScanCodeEvent(ScanCodeEvent event) {
+        System.out.println("扫苗成功ScanResult:"+event.getScanResult());
+        return new TextMsg("cc");
+    }
+    //参数二维码 已关注扫码
+    @Override
+    protected BaseMsg handleQrCodeEvent(QrCodeEvent event) {
+        System.out.println("event.getEventKey():"+event.getEventKey());
+        return new TextMsg("QrcodeEvent");
+    }
+    //参数二维码 未关注扫码
+    @Override
     protected BaseMsg handleSubscribe(BaseEvent event) {
         //交给handler
+        QrCodeEvent qrcodeevent =(QrCodeEvent) event;
+        System.out.println("event.getEventKey():"+qrcodeevent.getEventKey());
         return new TextMsg("关注发票成功");
     }
 
