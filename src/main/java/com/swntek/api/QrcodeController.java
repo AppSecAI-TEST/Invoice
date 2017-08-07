@@ -1,10 +1,9 @@
 package com.swntek.api;
 
-import com.github.sd4324530.fastweixin.api.QrcodeAPI;
-import com.github.sd4324530.fastweixin.api.config.ApiConfig;
-import com.github.sd4324530.fastweixin.api.enums.QrcodeType;
-import com.github.sd4324530.fastweixin.api.response.QrcodeResponse;
-import org.json.JSONObject;
+import com.fast.sd4324530.fastweixin.api.QrcodeAPI;
+import com.fast.sd4324530.fastweixin.api.config.ApiConfig;
+import com.fast.sd4324530.fastweixin.api.enums.QrcodeType;
+import com.fast.sd4324530.fastweixin.api.response.QrcodeResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
