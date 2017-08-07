@@ -138,6 +138,7 @@ public abstract class WeixinSupport {
                 if (eventType.equals(com.fast.sd4324530.fastweixin.message.req.EventType.SCAN)) {
                     msg = handleQrCodeEvent(qrCodeEvent);
                     if(msg!=null&&msg instanceof NewsMsg){
+                        System.out.print("进入NewsMsg方法");
                        NewsMsg newsmsg= (NewsMsg) msg;
                         Article article = newsmsg.getArticles().get(0);
                         if(article.getTitle().equals("")){
