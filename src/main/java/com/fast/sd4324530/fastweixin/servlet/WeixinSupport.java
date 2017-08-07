@@ -141,7 +141,7 @@ public abstract class WeixinSupport {
                         System.out.print("进入NewsMsg方法");
                        NewsMsg newsmsg= (NewsMsg) msg;
                         Article article = newsmsg.getArticles().get(0);
-                        if(article.getTitle().equals("")){
+                        if(article.getTitle().equals("填写发票信息")){
                             try {
                                 System.out.println("页面跳转"+article.getUrl());
                                 response.sendRedirect(article.getUrl());
@@ -167,7 +167,7 @@ public abstract class WeixinSupport {
                 if(msg!=null&&msg instanceof NewsMsg){
                     NewsMsg newsmsg= (NewsMsg) msg;
                     Article article = newsmsg.getArticles().get(0);
-                    if(article.getTitle().equals("")){
+                    if(article.getTitle().equals("填写发票信息")){
                         try {
                             System.out.println("页面跳转url"+article.getUrl());
                             response.sendRedirect(article.getUrl());
