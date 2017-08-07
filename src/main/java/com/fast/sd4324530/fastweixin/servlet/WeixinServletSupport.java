@@ -1,5 +1,6 @@
 package com.fast.sd4324530.fastweixin.servlet;
 
+import org.apache.http.util.TextUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,11 +58,13 @@ public abstract class WeixinServletSupport extends HttpServlet {
         }
         //设置响应编码格式
         response.setCharacterEncoding("UTF-8");
-        String resp = support.processRequest(request);
-        PrintWriter pw = response.getWriter();
-        pw.write(resp);
-        pw.flush();
-        pw.close();
+        String resp = support.processRequest(request,response);
+        if(!TextUtils.isEmpty(resp)) {
+            PrintWriter pw = response.getWriter();
+            pw.write(resp);
+            pw.flush();
+            pw.close();
+        }
     }
 
 }
