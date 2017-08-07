@@ -108,16 +108,16 @@ public class WeixinController extends WeixinControllerSupport {
         String shopid=request.getParameter("shopid");
         ApiConfig apiConfig = new ApiConfig(getAPPID(), getAPPSECRET());
         OauthAPI oauthAPI = new OauthAPI(apiConfig);
-        System.out.println("code"+code);
+        System.out.println("code"+code+"shopid:"+shopid);
         if(code ==null) {
-            String wxauthurl = oauthAPI.getOauthPageUrl("http://wx.okayapple.cn/weixin/auth", OauthScope.SNSAPI_USERINFO, shopid);
+            String wxauthurl = oauthAPI.getOauthPageUrl("http://wx.okayapple.cn/weixin/auth", OauthScope.SNSAPI_BASE, "123");
             response.sendRedirect(wxauthurl);
             return;
         }else{
             OauthGetTokenResponse token = oauthAPI.getToken(code);
             String openid = token.getOpenid();
             System.out.println("getopenid():"+openid);
-            response.sendRedirect("http://wx.okayapple.cn?openid="+openid+"&shopid="+shopid);
+            response.sendRedirect("http://wx.okayapple.cn/index.html?openid="+openid+"&shopid="+shopid);
             return;
         }
     }
