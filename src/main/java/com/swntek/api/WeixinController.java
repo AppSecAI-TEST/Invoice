@@ -65,7 +65,7 @@ public class WeixinController extends WeixinControllerSupport {
     //不再强制重写，有加密需要时自行重写该方法
     @Override
     protected String getAESKey() {
-        return null;
+        return "";
     }
 
     //重写父类方法，处理对应的微信消息 返回null则表示不处理
@@ -110,15 +110,16 @@ public class WeixinController extends WeixinControllerSupport {
         OauthAPI oauthAPI = new OauthAPI(apiConfig);
         System.out.println("code"+code+"shopid:"+shopid);
         if(code ==null) {
-            String wxauthurl = oauthAPI.getOauthPageUrl("http://wx.okayapple.cn/weixin/auth", OauthScope.SNSAPI_BASE, "123");
-            System.out.println("wxauthurl"+wxauthurl);
+            String wxauthurl = oauthAPI.getOauthPageUrl("http://wx.okayapple.cn/weixin/auth", OauthScope.SNSAPI_BASE, shopid);
+//            System.out.println("wxauthurl"+wxauthurl);
             response.sendRedirect(wxauthurl);
             return;
         }else{
             OauthGetTokenResponse token = oauthAPI.getToken(code);
             String openid = token.getOpenid();
-            System.out.println("getopenid():"+openid);
-            response.sendRedirect("http://wx.okayapple.cn/index.html?openid="+openid+"&shopid="+shopid);
+            shopid = request.getParameter("state");
+            System.out.println("getopenid():"+openid+"shopid:"+shopid);
+            response.sendRedirect("http://wx.okayapple.cn/register.html?openid="+openid+"&shopid="+shopid);
             return;
         }
     }

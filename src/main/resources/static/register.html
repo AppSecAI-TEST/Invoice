@@ -30,7 +30,19 @@
 </div>
 <script type="text/javascript" src="jquery-1.9.0.min.js"></script>
 <script type="text/javascript">
-
+    $(function () {
+       var shopid=getvalue("shopid");
+        var openid=getvalue("openid");
+        alert("shopid:"+shopid+"openid:"+openid);
+    });
+    function getvalue(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var search = window.location.search;
+        search=decodeURI(search);
+        var r = search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
 </script>
 </body>
 </html>
