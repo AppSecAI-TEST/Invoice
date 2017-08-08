@@ -1,8 +1,7 @@
 /**
  * Created by mac on 17/2/16.
  */
-var baseip="https://localhost:8443/";
-var baseurl=baseip+"api/";
+var shopid = 1;
 function _get(url,xml,callback,failcall,errorcall){
     $.ajax({
         url: url,

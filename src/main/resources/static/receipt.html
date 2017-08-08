@@ -10,17 +10,20 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <!--<link rel="stylesheet" href="//res.layui.com/layui/build/css/layui.css"  media="all">-->
-    <link rel="stylesheet" href="layui.css"  media="all">
+    <link rel="stylesheet" href="layui.css" media="all">
     <link rel="stylesheet" href="demo.css" media="all">
     <style>
-        .layui-table .layui-form-checkbox[lay-skin=primary]{margin:0;}
+        .layui-table .layui-form-checkbox[lay-skin=primary] {
+            margin: 0;
+        }
+
         .header-demo {
             height: 85px;
             border-bottom: none;
         }
     </style>
 </head>
-<body>
+<body style="overflow-y : hidden;">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header header header-demo">
         <div class="layui-main">
@@ -28,7 +31,7 @@
                 <img src="./images/logo.png" alt="layui">
             </a>
             <div class="layui-form component" style="width: 2000px;">
-                <span   style="font-size: 30px;color: #fff;">
+                <span style="font-size: 30px;color: #fff;">
                     好开票，让开发票变得很容易
                 </span>
             </div>
@@ -40,11 +43,13 @@
             <ul class="layui-nav layui-nav-tree site-demo-nav">
                 <br>
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="javascript:;" href="javascript:;">待开发票</a>
+                    <a class="javascript:;" href="list/willlist.html" target="main">待开发票</a>
                 </li>
-
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="javascript:;" href="javascript:;">合开发票</a>
+                    <a class="javascript:;" href="list/alreadylist.html" target="main">已开发票</a>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="javascript:;" href="list/mergelist.html" target="main">合开发票</a>
                 </li>
 
                 <li class="layui-nav-item layui-nav-itemed">
@@ -86,112 +91,12 @@
 
         </div>
     </div>
-
-    <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
-        <div class="layui-body layui-tab-content site-demo site-demo-body">
-            <div class="layui-tab-item layui-show">
-                <div class="layui-main">
-                    <div id="LAY_preview">
-                        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
-                            <legend>今日待开发票</legend>
-                        </fieldset>
-                        <table class="layui-table" lay-even lay-skin="row">
-                            <colgroup>
-                                <col width="150">
-                                <col width="150">
-                                <col width="200">
-                                <col>
-                            </colgroup>
-                            <thead>
-                            <tr>
-                                <th>编号</th>
-                                <th>开票人手机号</th>
-                                <th>公司名称</th>
-                                <th>开票税号</th>
-                                <th>开票金额</th>
-                                <th>操作</th>
-                            </tr>
-                            </thead>
-                            <tbody id="tbody">
-                            </tbody>
-                        </table>
-
-                    </div>
-
-                </div>
-            </div>
-
-
-            <div class="layui-tab-item">
-<textarea class="layui-border-box site-demo-text site-demo-code" id="LAY_democode" spellcheck="false" readonly>
-</textarea>
-            </div>
-
-
-            <div class="layui-tab-item">
-                <div class="layui-main">
-                    <p></p>
-
-
-                    <div style="margin: 15px 0;">
-                        <ins class="adsbygoogle"
-                             style="display:inline-block;width:970px;height:90px"
-                             data-ad-client="ca-pub-6111334333458862"
-                             data-ad-slot="6835627838"></ins>
-                    </div>
-
-
-                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
-                        <legend>相关</legend>
-                    </fieldset>
-                    <a class="layui-btn layui-btn-normal" href="/doc/element/table.html" target="_blank">表格元素文档</a>
-                </div>
-            </div>
-
-
-        </div>
-    </div>
+    <iframe src="list/willlist.html" width="100%" height="1000px" scrolling="no" frameborder="0" name="main"></iframe>
     <div class="layui-footer footer footer-demo">
         <div class="layui-main">
             <p>&copy; 2017 <a href="/">layui.com</a> MIT license</p>
         </div>
     </div>
 </div>
-    <script type="text/javascript" src="jquery-1.9.0.min.js"></script>
-    <script type="text/javascript" src="common.js"></script>
-    <script src="http://cdn.goeasy.io/goeasy.js"></script>
-    <script>
-        var shopid=1;
-        list();
-        var goEasy = new GoEasy({ appkey: "BC-880807076caf4c95b5c3e1aa25d0355b"});
-        goEasy.subscribe({
-            channel: "shopid", onMessage: function (message) {
-//                alert("Channel:" + message.channel + " content:" + message.content);
-                list();
-            }
-        });
-        $(function () {
-            $(".already").on("click",function(){
-                alert($(this).attr("name"))
-            })
-        });
-        function list() {
-            _getparam("/api/invoice/list",{"shopid":shopid},function(data){
-                $("#tbody").empty();
-                for(var i=0;i<data.length;i++){
-                    var obj=data[i];
-                    var trhtml='<tr><td>'+obj.id+'</td><td>'+obj.user.phone+'</td><td>'+obj.company.name+'</td><td>'+obj.company.duty+'</td><td>'+obj.price+'</td><td><button class="layui-btn layui-btn-small already" onclick="changestate('+obj.id+',2)">发票已开</button><button class="layui-btn layui-btn-small layui-btn-normal nextmerge" onclick="changestate('+obj.id+',1)">下次合开</button><button class="layui-btn layui-btn-small" style="background-color:#FF5722;">取消</button></td></tr>'
-                    $("#tbody").append(trhtml)
-                }
-            })
-        }
-        function changestate(invoiceid,state) {
-            alert("invoiceid"+invoiceid);
-            _postparam("/api/invoice/changestate",{"state":state,"invoiceid":invoiceid},function(data){
-                list();
-            });
-            return false;
-        }
-    </script>
 </body>
 </html>
