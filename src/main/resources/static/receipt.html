@@ -235,7 +235,7 @@
                 $("#tbody").empty();
                 for(var i=0;i<data.length;i++){
                     var obj=data[i];
-                    $("#tbody").append('<td>obj.id</td><td>obj.user.phone</td><td>obj.company.name</td><td>obj.company.duty</td><td>obj.price</td><td><button class="layui-btnlayui-btn-small">发票已开</button><button class="layui-btnlayui-btn-smalllayui-btn-normal">下次合开</button><button class="layui-btnlayui-btn-small" style="background-color:#FF5722;">取消</button></td>')
+                    $("#tbody").append('<tr><td>'+obj.id+'</td><td>'+obj.user.phone+'</td><td>'+obj.company.name+'</td><td>'+obj.company.duty+'</td><td>'+obj.price+'</td><td><button class="layui-btnlayui-btn-small">发票已开</button><button class="layui-btnlayui-btn-smalllayui-btn-normal">下次合开</button><button class="layui-btnlayui-btn-small" style="background-color:#FF5722;">取消</button></td></tr>')
                 }
             })
         }
