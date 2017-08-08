@@ -42,6 +42,9 @@
     $(function () {
          shopid=getvalue("shopid");
          openid=getvalue("openid");
+        $("#btn_check").click(function () {
+            commit();
+        })
     });
     function commit() {
         phone=$("#et_phone").val();
