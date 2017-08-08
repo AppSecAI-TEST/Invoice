@@ -23,6 +23,7 @@ public class Invoice {
     private long id;
     private String serialnumber;//编号
     private long shopid;//店铺id
+    private int state;//0待确认 1下次合开 2已经开过
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date createtime;

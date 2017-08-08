@@ -50,8 +50,25 @@ public class InvoiceController {
         return "success";
     }
     @GetMapping("/list")
-    public List<Invoice> list(){
-        List<Invoice> all = invoicedao.findAll();
+    public List<Invoice> list(@RequestParam long shopid){
+        List<Invoice> all = invoicedao.findstate(0,shopid);
         return all;
+    }
+    @GetMapping("/listmerge")
+    public List<Invoice> listmerge(@RequestParam long shopid){
+        List<Invoice> all = invoicedao.findstate(1,shopid);
+        return all;
+    }
+    @GetMapping("/listalread")
+    public List<Invoice> listalread(@RequestParam long shopid){
+        List<Invoice> all = invoicedao.findstate(2,shopid);
+        return all;
+    }
+    @PostMapping("/changestate")
+    public boolean changstate(int state,long invoiceid){
+        Invoice one = invoicedao.findOne(invoiceid);
+        one.setState(state);
+        invoicedao.saveAndFlush(one);
+        return true;
     }
 }
