@@ -27,6 +27,7 @@ public class Company {
     @CreationTimestamp
     private Date createtime;
     @OneToMany(mappedBy = "company")
+    @JsonIgnore
     private List<Invoice> invoiceList=new ArrayList<>();
     @ManyToMany(mappedBy = "companyList")
     @JsonIgnore

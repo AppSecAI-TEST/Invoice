@@ -11,26 +11,57 @@
 </head>
 <body>
 <!-- banner图 -->
-<div class="banner">
-    <!--<img src="images/logo.png" width="100%"/>-->
-</div>
+<!--<div class="banner">-->
+    <!--&lt;!&ndash;<img src="images/logo.png" width="100%"/>&ndash;&gt;-->
+<!--</div>-->
 <div>
     <form onsubmit="return false;">
         <div class="inputs"><span>公司名</span><input type="text" style="margin-left: 50px" name="" placeholder="公司名"
-                                                   id="et_vin">
+                                                   id="et_cname">
         </div>
         <p></p>
-        <div class="inputs"><span>税号</span><input type="number" name="" placeholder="请输入税号" id="et_phone"></div>
+        <div class="inputs"><span>税号</span><input type="number" name="" placeholder="请输入税号" id="et_duit"></div>
         <p></p>
         <div class="inputs"><span>金额</span><input type="number" style="margin-left: 50px" name="" placeholder="金额"
                                                    id="et_price">
         </div>
-        <button id="btn_check">提交</button>
+        <div class="inputs"><span>手机号</span><input type="number" name="" placeholder="手机号码" id="et_phone"></div>
+        <p></p>
+        <button id="btn_check">添加</button>
     </form>
 </div>
 <script type="text/javascript" src="jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="common.js"></script>
 <script type="text/javascript">
-
+    var shopid;
+    var openid;
+    var phone;
+    var cname;
+    var duty;
+    var price;
+    $(function () {
+         shopid=getvalue("shopid");
+         openid=getvalue("openid");
+    });
+    function commit() {
+        phone=$("#et_phone").val();
+        cname=$("#et_cname").val();
+        duty=$("#et_duit").val();
+        price=$("#et_price").val();
+        _postparam("/api/invoice/add",{"shopid":shopid,"openid":openid,"phone":phone,"cname":cname,"duty":duty,"price":price},function(data){
+            alert("提交成功");
+        },function (err) {
+            alert("提交失败,请检查信息是否完整");
+        })
+    }
+    function getvalue(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var search = window.location.search;
+        search=decodeURI(search);
+        var r = search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
 </script>
 </body>
 </html>

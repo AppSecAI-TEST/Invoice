@@ -1,5 +1,6 @@
 package com.swntek.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -27,8 +28,10 @@ public class User {
     @CreationTimestamp
     private Date createtime;
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Invoice> invoiceList=new ArrayList<>();
     @ManyToMany
     @JoinTable(name = "user_company",joinColumns ={@JoinColumn(name = "user_id")},inverseJoinColumns = {@JoinColumn(name = "company_id")})
+    @JsonIgnore
     private List<Company> companyList=new ArrayList<>();
 }

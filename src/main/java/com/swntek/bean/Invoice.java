@@ -31,11 +31,9 @@ public class Invoice {
     private Date updateTime;
     @ManyToOne
     @JoinColumn(name = "user_id",referencedColumnName = "id")
-    @JsonIgnore
     private User user;
     @ManyToOne
     @JoinColumn(name = "company_id",referencedColumnName = "id")
-    @JsonIgnore
     private Company company;
     private double price;
 }

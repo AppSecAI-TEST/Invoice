@@ -137,20 +137,6 @@ public abstract class WeixinSupport {
                 buildBasicEvent(reqMap, qrCodeEvent);
                 if (eventType.equals(com.fast.sd4324530.fastweixin.message.req.EventType.SCAN)) {
                     msg = handleQrCodeEvent(qrCodeEvent);
-                    if(msg!=null&&msg instanceof NewsMsg){
-                        System.out.print("进入NewsMsg方法");
-                       NewsMsg newsmsg= (NewsMsg) msg;
-                        Article article = newsmsg.getArticles().get(0);
-                        if(article.getTitle().equals("填写发票信息")){
-                            try {
-                                System.out.println("页面跳转"+article.getUrl());
-                                response.sendRedirect(article.getUrl());
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            return null;
-                        }
-                    }
                     if (isNull(msg)) {
                         msg = processEventHandle(qrCodeEvent);
                     }
@@ -164,19 +150,6 @@ public abstract class WeixinSupport {
                     buildBasicEvent(reqMap, event);
                 }
                 msg = handleSubscribe(event);
-                if(msg!=null&&msg instanceof NewsMsg){
-                    NewsMsg newsmsg= (NewsMsg) msg;
-                    Article article = newsmsg.getArticles().get(0);
-                    if(article.getTitle().equals("填写发票信息")){
-                        try {
-                            System.out.println("页面跳转url"+article.getUrl());
-                            response.sendRedirect(article.getUrl());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        return null;
-                    }
-                }
                 if (isNull(msg)) {
                     msg = processEventHandle(event);
                 }

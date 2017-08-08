@@ -105,7 +105,6 @@ public class WeixinController extends WeixinControllerSupport {
         String eventKey = qrcodeevent.getEventKey();
         String shopid=eventKey.split("_")[1];
         String openid=event.getFromUserName();
-
         Article article=new Article("填写发票信息","填写发票信息","http://pic.58pic.com/58pic/12/21/22/54P58PICBkX.jpg", Constact.baseurl+"register.html?openid="+openid+"shopid="+shopid);
         NewsMsg newsMsg=new NewsMsg();
         newsMsg.add(article);
@@ -140,7 +139,7 @@ public class WeixinController extends WeixinControllerSupport {
         OauthAPI oauthAPI = new OauthAPI(apiConfig);
         System.out.println("code"+code+"shopid:"+shopid);
         if(code ==null) {
-            String wxauthurl = oauthAPI.getOauthPageUrl(Constact.baseurl+"weixin/auth", OauthScope.SNSAPI_USERINFO, shopid);
+            String wxauthurl = oauthAPI.getOauthPageUrl(Constact.baseurl+"weixin/auth", OauthScope.SNSAPI_BASE, shopid);
             System.out.println("wxauthurl"+wxauthurl);
             response.sendRedirect(wxauthurl);
             return;
@@ -149,7 +148,7 @@ public class WeixinController extends WeixinControllerSupport {
             String openid = token.getOpenid();
             shopid = request.getParameter("state");
             System.out.println("getopenid():"+openid+"shopid:"+shopid);
-            response.sendRedirect(Constact.baseurl+"register.html?openid="+openid+"&shopid="+shopid);
+            response.sendRedirect(Constact.baseurl+"addInvoice.html?openid="+openid+"&shopid="+shopid);
             return;
         }
     }
