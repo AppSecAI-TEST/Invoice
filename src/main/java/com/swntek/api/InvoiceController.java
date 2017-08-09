@@ -51,7 +51,7 @@ public class InvoiceController {
         company.setName(cname);
         company.setDuty(duty);
         Company savecompany=companydao.saveAndFlush(company);
-        user.getCompanySet().add(savecompany);
+        user.getCompanyList().add(savecompany);
         User saveuser= userdao.saveAndFlush(user);
         Invoice invoice=new Invoice();
         invoice.setShopid(shopid);

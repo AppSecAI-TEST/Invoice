@@ -30,5 +30,5 @@ public class User {
     private List<Invoice> invoiceList=new ArrayList<>();
     @ManyToMany
     @JoinTable(name = "user_company",joinColumns ={@JoinColumn(name = "user_id")},inverseJoinColumns = {@JoinColumn(name = "company_id")})
-    private Set<Company> companySet=new LinkedHashSet<>();
+    private Set<Company> companyList=new LinkedHashSet<>();
 }
