@@ -36,8 +36,8 @@ import java.util.List;
 public class WeixinController extends WeixinControllerSupport {
     private static final Logger log = LoggerFactory.getLogger(WeixinController.class);
     private static final String TOKEN = "ImwMGG0dY9p4rm3145POZ0PDvGM5r97d";
-    private static final String APPID = "wx4409ac4d64290eac";
-    private static final String APPSECRET = "61e128d4a18aaea7bc08b9fbe1db484a";
+    private static final String APPID = "wxab36b73feffe277c";
+    private static final String APPSECRET = "227aa8ab2f33798f7ac6b09b138a360c";
 
     public static String getTOKEN() {
         return TOKEN;
@@ -69,7 +69,7 @@ public class WeixinController extends WeixinControllerSupport {
     //不再强制重写，有加密需要时自行重写该方法
     @Override
     protected String getAESKey() {
-        return "";
+        return "gI6SXIK4JDYn21Bpg7UYUf7CZt2Zwv3lC0fXyn8cMtI";
     }
 
     //重写父类方法，处理对应的微信消息 返回null则表示不处理
@@ -78,38 +78,40 @@ public class WeixinController extends WeixinControllerSupport {
         String content = msg.getContent();
         log.debug("用户发送到服务器的内容:{}", content);
         System.out.println("content:" + content);
-        return new TextMsg("欢迎关注发票");
+        return new TextMsg("欢迎关注好开");
     }
 
     @Override
     protected BaseMsg handleScanCodeEvent(ScanCodeEvent event) {
         System.out.println("扫苗成功ScanResult:"+event.getScanResult());
-        return new TextMsg("cc");
+        return new TextMsg("好开");
     }
     //参数二维码 已关注扫码
     @Override
     protected BaseMsg handleQrCodeEvent(QrCodeEvent event) {
-        String shopid = event.getEventKey();
-        String openid=event.getFromUserName();
-        System.out.println("event.getEventKey():"+ shopid);
-        Article article=new Article("填写发票信息","填写发票信息","http://pic.58pic.com/58pic/12/21/22/54P58PICBkX.jpg", Constact.baseurl+"register.html?openid="+openid+"shopid="+shopid);
-        NewsMsg newsMsg=new NewsMsg();
-        newsMsg.add(article);
-        return newsMsg;
+//        String shopid = event.getEventKey();
+//        String openid=event.getFromUserName();
+//        System.out.println("event.getEventKey():"+ shopid);
+//        Article article=new Article("填写发票信息","填写发票信息","http://pic.58pic.com/58pic/12/21/22/54P58PICBkX.jpg", Constact.baseurl+"register.html?openid="+openid+"shopid="+shopid);
+//        NewsMsg newsMsg=new NewsMsg();
+//        newsMsg.add(article);
+//        return newsMsg;
+        return null;
     }
     //参数二维码 未关注扫码
     @Override
     protected BaseMsg handleSubscribe(BaseEvent event) {
         //交给handler
-        QrCodeEvent qrcodeevent =(QrCodeEvent) event;
-        String eventKey = qrcodeevent.getEventKey();
-        String shopid=eventKey.split("_")[1];
-        String openid=event.getFromUserName();
-        Article article=new Article("填写发票信息","填写发票信息","http://pic.58pic.com/58pic/12/21/22/54P58PICBkX.jpg", Constact.baseurl+"register.html?openid="+openid+"shopid="+shopid);
-        NewsMsg newsMsg=new NewsMsg();
-        newsMsg.add(article);
-        System.out.println("event.getEventKey():"+ eventKey);
-        return newsMsg;
+//        QrCodeEvent qrcodeevent =(QrCodeEvent) event;
+//        String eventKey = qrcodeevent.getEventKey();
+//        String shopid=eventKey.split("_")[1];
+//        String openid=event.getFromUserName();
+//        Article article=new Article("填写发票信息","填写发票信息","http://pic.58pic.com/58pic/12/21/22/54P58PICBkX.jpg", Constact.baseurl+"register.html?openid="+openid+"shopid="+shopid);
+//        NewsMsg newsMsg=new NewsMsg();
+//        newsMsg.add(article);
+//        System.out.println("event.getEventKey():"+ eventKey);
+//        return newsMsg;
+        return null;
     }
 
     /*1.1版本新增，重写父类方法，加入自定义微信消息处理器
