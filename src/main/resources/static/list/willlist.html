@@ -86,6 +86,7 @@
     </div>
 <script type="text/javascript" src="../jquery-1.9.0.min.js"></script>
 <script type="text/javascript" src="../common.js"></script>
+<script src="dist/ZeroClipboard.js"></script>
 <script src="http://cdn.goeasy.io/goeasy.js"></script>
 <script>
     var shopid = 1;
@@ -98,24 +99,35 @@
         }
     });
 //    document.domain = "aaron.com"
-
+    $(function () {
+    });
+    function initcopy(copyid) {
+        //初始化复制对象
+        var clip = new ZeroClipboard( document.getElementById(copyid), {
+            moviePath: "dist/ZeroClipboard.swf"
+        } );
+//        clip.on( 'complete', function(client, args) {
+//        });
+    }
     window.onload = function() {
         var h  = document.body.scrollHeight;
-        parent.document.getElementById("iframe-b").style.height = h + "px";
+        parent.document.getElementById("list").style.height = h + "px";
     };
-    $(function () {
-        $(".already").on("click", function () {
-            alert($(this).attr("name"))
-        })
-    });
     function list() {
         _getparam("/api/invoice/list", {"shopid": shopid}, function (data) {
             $("#tbody").empty();
             for (var i = 0; i < data.length; i++) {
                 var obj = data[i];
-                var trhtml = '<tr><td>' + obj.id + '</td><td>' + obj.user.phone + '</td><td>' + obj.company.name + '</td><td>' + obj.company.duty + '</td><td>' + obj.price + '</td><td><button class="layui-btn layui-btn-small already" onclick="changestate(' + obj.id + ',2)">发票已开</button><button class="layui-btn layui-btn-small layui-btn-normal nextmerge" onclick="changestate(' + obj.id + ',1)">下次合开</button><button class="layui-btn layui-btn-small" style="background-color:#FF5722;">取消</button></td></tr>'
+                var trhtml = '<tr><td>' + obj.id + '</td><td>' + obj.user.phone + '</td><td><input id="m_'+obj.id+'" type="hidden" value="'+ obj.company.name+'"/> ' + obj.company.name + '<button id="btn_'+obj.id+'" class="mcopy" data-clipboard-target="m_'+obj.id+'">复制</button></td><td><input id="duty_'+obj.id+'" type="hidden" value="'+ obj.company.duty+'"/> ' + obj.company.duty + '<button id="btn2_'+obj.id+'" class="mcopy" data-clipboard-target="duty_'+obj.id+'">复制</button></td><td>' + obj.price + '</td><td><button class="layui-btn layui-btn-small already" onclick="changestate(' + obj.id + ',2)">发票已开</button><button class="layui-btn layui-btn-small layui-btn-normal nextmerge" onclick="changestate(' + obj.id + ',1)">下次合开</button><button class="layui-btn layui-btn-small" style="background-color:#FF5722;">取消</button></td></tr>'
                 $("#tbody").append(trhtml)
             }
+            $(".mcopy").each(function(){
+                console.log("id:"+$(this).attr("id"))
+                initcopy($(this).attr("id"));
+            });
+            $(".mcopy").bind("click",function () {
+                alert("复制成功");
+            })
         })
     }
     function changestate(invoiceid, state) {

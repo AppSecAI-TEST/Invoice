@@ -91,7 +91,7 @@
     list();
     window.onload = function() {
         var h  = document.body.scrollHeight;
-        parent.document.getElementById("iframe-b").style.height = h + "px";
+        parent.document.getElementById("list").style.height = h + "px";
     };
     function list() {
         _getparam("/api/invoice/listmerge", {"shopid": shopid}, function (data) {
