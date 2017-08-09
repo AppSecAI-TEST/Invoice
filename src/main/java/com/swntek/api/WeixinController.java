@@ -36,8 +36,11 @@ import java.util.List;
 public class WeixinController extends WeixinControllerSupport {
     private static final Logger log = LoggerFactory.getLogger(WeixinController.class);
     private static final String TOKEN = "ImwMGG0dY9p4rm3145POZ0PDvGM5r97d";
-    private static final String APPID = "wx4409ac4d64290eac";
-    private static final String APPSECRET = "61e128d4a18aaea7bc08b9fbe1db484a";
+//    private static final String APPID = "wx4409ac4d64290eac";
+//    private static final String APPSECRET = "61e128d4a18aaea7bc08b9fbe1db484a";
+    private static final String APPID = "wxab36b73feffe277c";
+    private static final String APPSECRET = "227aa8ab2f33798f7ac6b09b138a360c";
+
 
     public static String getTOKEN() {
         return TOKEN;
