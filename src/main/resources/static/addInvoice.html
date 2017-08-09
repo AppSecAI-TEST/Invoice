@@ -66,9 +66,9 @@
                 var trhtml;
                 if(i==0){
                     changval(obj.name,obj.duty);
-                    trhtml = '<tr><td><input checked type="radio" id="checkrb",value="rb_'+obj.id+'" onchange="changval(\''+obj.name+'\','+obj.duty+')"></td><td>'+ obj.name + '</td><td>' + obj.duty + '</td></tr>';
+                    trhtml = '<tr><td><input checked type="radio" name="checkrb",value="rb_'+obj.id+'" onchange="changval(\''+obj.name+'\','+obj.duty+')"></td><td>'+ obj.name + '</td><td>' + obj.duty + '</td></tr>';
                 }else{
-                    trhtml = '<tr><td><input type="radio" id="checkrb",value="rb_'+obj.id+'" onchange="changval(\''+obj.name+'\','+obj.duty+')"></td><td>'+ obj.name + '</td><td>' + obj.duty + '</td></tr>';
+                    trhtml = '<tr><td><input type="radio" name="checkrb",value="rb_'+obj.id+'" onchange="changval(\''+obj.name+'\','+obj.duty+')"></td><td>'+ obj.name + '</td><td>' + obj.duty + '</td></tr>';
                 }
                 $("#tmergebody").append(trhtml);
             }
