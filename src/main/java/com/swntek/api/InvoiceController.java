@@ -32,33 +32,33 @@ public class InvoiceController {
 
     @PostMapping("/add")
     public String add(@RequestParam long shopid,@RequestParam String openid,@RequestParam String phone,@RequestParam String cname,@RequestParam String duty,@RequestParam double price){
-        User user=new User();
+        User finduser = userdao.findOpenid(openid);
+        User user;
+        Company company;
+        if(finduser==null){
+             user=new User();
+        }else{
+            user=finduser;
+        }
+        Company findcompany = companydao.findduty(duty);
+        if(findcompany==null) {
+            company=new Company();
+        }else{
+            company=findcompany;
+        }
         user.setPhone(phone);
         user.setOpenid(openid);
-        Company company=new Company();
         company.setName(cname);
         company.setDuty(duty);
-        Company findcompany = companydao.findduty(duty);
-        Company savecompany;
-        if(findcompany!=null){
-            savecompany=companydao.saveAndFlush(findcompany);
-        }else {
-            savecompany = companydao.save(company);
-        }
+        Company savecompany=companydao.saveAndFlush(company);
         user.getCompanyList().add(savecompany);
-        User finduser = userdao.findOpenid(openid);
-        User saveuser;
-        if(finduser!=null){
-            saveuser=userdao.saveAndFlush(finduser);
-        }else {
-            saveuser= userdao.save(user);
-        }
+        User saveuser= userdao.saveAndFlush(user);
         Invoice invoice=new Invoice();
         invoice.setShopid(shopid);
         invoice.setSerialnumber(UUID.randomUUID().toString());
         invoice.setPrice(price);
         invoice.setUser(saveuser);
-        invoice.setCompany(company);
+        invoice.setCompany(savecompany);
         invoicedao.save(invoice);
         GoEasy goEasy = new GoEasy(Constact.pubkey);
         goEasy.publish("shopid", "Hello, GoEasy!");
