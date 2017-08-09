@@ -29,7 +29,7 @@ public class Company {
     @OneToMany(mappedBy = "company")
     @JsonIgnore
     private List<Invoice> invoiceList=new ArrayList<>();
-    @ManyToMany(mappedBy = "companyList")
+    @ManyToMany(mappedBy = "companySet")
     @JsonIgnore
     private List<User> userList=new ArrayList<>();
 }

@@ -6,9 +6,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by mac on 17/8/7.
@@ -32,5 +30,5 @@ public class User {
     private List<Invoice> invoiceList=new ArrayList<>();
     @ManyToMany
     @JoinTable(name = "user_company",joinColumns ={@JoinColumn(name = "user_id")},inverseJoinColumns = {@JoinColumn(name = "company_id")})
-    private List<Company> companyList=new ArrayList<>();
+    private Set<Company> companySet=new LinkedHashSet<>();
 }
