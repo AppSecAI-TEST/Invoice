@@ -44,6 +44,7 @@
                                 <th>公司名称</th>
                                 <th>开票税号</th>
                                 <th>开票金额</th>
+                                <th>时间</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
@@ -98,7 +99,7 @@
             $("#tbody").empty();
             for (var i = 0; i < data.length; i++) {
                 var obj = data[i];
-                var trhtml = '<tr><td>' + obj.id + '</td><td>' + obj.user.phone + '</td><td>' + obj.company.name + '</td><td>' + obj.company.duty + '</td><td>' + obj.price + '</td><td></td></tr>'
+                var trhtml = '<tr><td>' + obj.id + '</td><td>' + obj.user.phone + '</td><td>' + obj.company.name + '</td><td>' + obj.company.duty + '</td><td>' + obj.price + '</td><td>'+obj.updateTime+'</td><td></td></tr>'
                 $("#tbody").append(trhtml)
             }
         })

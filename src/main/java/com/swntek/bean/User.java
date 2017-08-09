@@ -32,6 +32,5 @@ public class User {
     private List<Invoice> invoiceList=new ArrayList<>();
     @ManyToMany
     @JoinTable(name = "user_company",joinColumns ={@JoinColumn(name = "user_id")},inverseJoinColumns = {@JoinColumn(name = "company_id")})
-    @JsonIgnore
     private List<Company> companyList=new ArrayList<>();
 }

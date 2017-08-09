@@ -11,6 +11,9 @@ import io.goeasy.GoEasy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -35,9 +38,21 @@ public class InvoiceController {
         Company company=new Company();
         company.setName(cname);
         company.setDuty(duty);
-        Company savecompany = companydao.save(company);
+        Company findcompany = companydao.findduty(duty);
+        Company savecompany;
+        if(findcompany!=null){
+            savecompany=companydao.saveAndFlush(findcompany);
+        }else {
+            savecompany = companydao.save(company);
+        }
         user.getCompanyList().add(savecompany);
-        User saveuser = userdao.save(user);
+        User finduser = userdao.findOpenid(openid);
+        User saveuser;
+        if(finduser!=null){
+            saveuser=userdao.saveAndFlush(finduser);
+        }else {
+            saveuser= userdao.save(user);
+        }
         Invoice invoice=new Invoice();
         invoice.setShopid(shopid);
         invoice.setSerialnumber(UUID.randomUUID().toString());
@@ -65,10 +80,50 @@ public class InvoiceController {
         return all;
     }
     @PostMapping("/changestate")
-    public boolean changstate(int state,long invoiceid){
+    public boolean changstate(int state,long invoiceid,double price){
         Invoice one = invoicedao.findOne(invoiceid);
+        one.setPrice(price);
         one.setState(state);
         invoicedao.saveAndFlush(one);
         return true;
+    }
+    @GetMapping("/listbyphone")
+    public List<Invoice> listbyphone(@RequestParam String phone,@RequestParam long shopid){
+        List<Invoice> all = invoicedao.findstate(1,shopid);
+        List<Invoice> res=new ArrayList<>();
+        for(Invoice invoice:all){
+            if(invoice.getUser().getPhone().equals(phone)){
+                res.add(invoice);
+            }
+        }
+        return res;
+    }
+    @PostMapping("/mergestart")
+    public List<Invoice> mergestart(@RequestParam String ids){
+        List<Invoice> res=new ArrayList<>();
+        String[] idsplit = ids.split(";");
+        List<Long> idslong=new ArrayList<>();
+        for(String id:idsplit){
+            idslong.add(Long.parseLong(id));
+        }
+        List<BigInteger> groupcompanyids = invoicedao.groupcompanyids(idslong);
+        for(BigInteger companyid:groupcompanyids){
+            Invoice invoice=new Invoice();
+            for(Long invoiceid:idslong){
+                Invoice one = invoicedao.findOne(invoiceid);
+                if(one.getCompany().getId()==companyid.longValue()){
+                    BigDecimal bigDecimal=new BigDecimal(invoice.getPrice());
+                    BigDecimal result = bigDecimal.add(new BigDecimal(one.getPrice()));
+                    invoice.setCompany(one.getCompany());
+                    invoice.setUser(one.getUser());
+                    invoice.setPrice(result.doubleValue());
+                    one.setState(2);
+                    invoicedao.saveAndFlush(one);
+                    break;
+                }
+            }
+            res.add(invoice);
+        }
+        return res;
     }
 }

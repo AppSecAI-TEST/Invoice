@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/index.css"/>
+    <link rel="stylesheet" href="layui.css">
 </head>
 <body>
 <!-- banner图 -->
@@ -28,6 +29,19 @@
         <div class="inputs"><span>手机号</span><input type="number" name="" placeholder="手机号码" id="et_phone"></div>
         <p></p>
         <button id="btn_check">添加</button>
+        <div id="mergediv" style="display: none">
+            <table class="layui-table" lay-even lay-skin="row">
+                <thead>
+                <tr>
+                    <th>选择</th>
+                    <th>公司名称</th>
+                    <th>开票税号</th>
+                </tr>
+                </thead>
+                <tbody id="tmergebody">
+                </tbody>
+            </table>
+        </div>
     </form>
 </div>
 <script type="text/javascript" src="jquery-1.9.0.min.js"></script>
@@ -42,10 +56,31 @@
     $(function () {
          shopid=getvalue("shopid");
          openid=getvalue("openid");
+        _postparam("/api/pre/findbyopenid",{"openid":openid},function(data){
+           console.log("data",data);
+            $("#et_phone").val(data.phone);
+            $("#mergediv").show();
+            $("#tmergebody").empty()
+            for (var i = 0; i < data.companyList.length; i++) {
+                var obj = data.companyList[i];
+                var trhtml;
+                if(i==0){
+                    changval(obj.name,obj.duty);
+                    trhtml = '<tr><td><input checked type="radio" id="checkrb",value="rb_'+obj.id+'" onchange="changval(\''+obj.name+'\','+obj.duty+')"></td><td>'+ obj.name + '</td><td>' + obj.duty + '</td></tr>';
+                }else{
+                    trhtml = '<tr><td><input type="radio" id="checkrb",value="rb_'+obj.id+'" onchange="changval(\''+obj.name+'\','+obj.duty+')"></td><td>'+ obj.name + '</td><td>' + obj.duty + '</td></tr>';
+                }
+                $("#tmergebody").append(trhtml);
+            }
+        });
         $("#btn_check").click(function () {
             commit();
         })
     });
+    function changval(name,duty) {
+        $("#et_cname").val(name);
+        $("#et_duit").val(duty);
+    }
     function commit() {
         phone=$("#et_phone").val();
         cname=$("#et_cname").val();
