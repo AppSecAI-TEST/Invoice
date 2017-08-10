@@ -11,6 +11,10 @@ body {
 .banner img {
 
 }
+.zm_radio{
+	width: 18px;
+	height: 18px;
+}
 div > form > .inputs {
 	width: 100%;
 	height: 40px;
