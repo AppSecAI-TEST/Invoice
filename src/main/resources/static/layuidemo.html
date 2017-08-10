@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>开始使用Layui</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+</head>
+<body>
+<!--横向table-->
+<!--<div class="layui-tab">-->
+    <!--<ul class="layui-tab-title">-->
+        <!--<li class="layui-this">标题一</li>-->
+        <!--<li>标题二</li>-->
+        <!--<li>标题三</li>-->
+    <!--</ul>-->
+    <!--<div class="layui-tab-content">-->
+        <!--<div class="layui-tab-item layui-show">内容1</div>-->
+        <!--<div class="layui-tab-item">内容2</div>-->
+        <!--<div class="layui-tab-item">内容3</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--横向table2-->
+<!--<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">-->
+    <!--<ul class="layui-tab-title">-->
+        <!--<li class="layui-this">网站设置</li>-->
+        <!--<li>用户管理</li>-->
+        <!--<li>权限分配</li>-->
+        <!--<li>商品管理</li>-->
+        <!--<li>订单管理</li>-->
+    <!--</ul>-->
+    <!--<div class="layui-tab-content"></div>-->
+<!--</div>-->
+<!--横向导航-->
+<!--<ul class="layui-nav" lay-filter="">-->
+    <!--<li class="layui-nav-item layui-this"><a href="">最新活动</a></li>-->
+    <!--<li class="layui-nav-item"><a href="">产品</a></li>-->
+    <!--<li class="layui-nav-item"><a href="">大数据</a></li>-->
+    <!--<li class="layui-nav-item">-->
+        <!--<a href="javascript:;">解决方案</a>-->
+        <!--<dl class="layui-nav-child"> &lt;!&ndash; 二级菜单 &ndash;&gt;-->
+            <!--<dd><a href="">移动模块</a></dd>-->
+            <!--<dd><a href="">后台模版</a></dd>-->
+            <!--<dd><a href="">电商平台</a></dd>-->
+        <!--</dl>-->
+    <!--</li>-->
+    <!--<li class="layui-nav-item"><a href="">社区</a></li>-->
+<!--</ul>-->
+
+<ul class="layui-nav layui-nav-tree" lay-filter="test">
+    <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+    <li class="layui-nav-item layui-nav-itemed">
+        <a href="javascript:;">默认展开</a>
+        <dl class="layui-nav-child">
+            <dd><a href="javascript:;">选项1</a></dd>
+            <dd><a href="javascript:;">选项2</a></dd>
+            <dd><a href="">跳转</a></dd>
+        </dl>
+    </li>
+    <li class="layui-nav-item">
+        <a href="javascript:;">解决方案</a>
+        <dl class="layui-nav-child">
+            <dd><a href="">移动模块</a></dd>
+            <dd><a href="">后台模版</a></dd>
+            <dd><a href="">电商平台</a></dd>
+        </dl>
+    </li>
+    <li class="layui-nav-item"><a href="">产品</a></li>
+    <li class="layui-nav-item"><a href="">大数据</a></li>
+</ul>
+<!-- 你的HTML代码 -->
+<!--<script src="./layui/layui.js"></script>-->
+
+<!--<script>-->
+<!--var layer = layui.layer;-->
+<!--layer.msg('Hello World');-->
+<!--//    一般直接写在一个js文件中-->
+<!--layui.use(['layer', 'form'], function(){-->
+<!--var layer = layui.layer,form = layui.form();-->
+<!--layer.msg('Hello World');-->
+<!--});-->
+<!--</script>-->
+<script src="layui/lay/dest/layui.all.js"></script>
+<script>
+    ;!function () {
+        //当使用了 layui.all.js，无需再执行layui.use()方法
+        var form = layui.form(), layer = layui.layer;
+//        layer.msg('Hello World');
+//        var element = layui.element();
+//        element.on('tab(test)', function(data){
+//                console.log(data.)
+//        });
+    }();
+</script>
+
+
+</body>
+</html>
