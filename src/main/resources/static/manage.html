@@ -15,12 +15,12 @@
         </a>
         <span class="title" style="font-size: 30px;color: #fff;">好开票，让开发票变得很容易</span>
     </div>
-    <ul class="layui-nav layui-nav-tree zm-layui-nav-side" lay-filter="test">
+    <ul class="layui-nav layui-nav-tree zm-layui-nav-side" lay-filter="slide">
         <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
-        <li class="layui-nav-item layui-nav-itemed"><a href="javascript:;">待开发票</a></li>
-        <li class="layui-nav-item"><a href="javascript:;">已开发票</a></li>
-        <li class="layui-nav-item"><a href="javascript:;">合并发票</a></li>
-        <li class="layui-nav-item layui-nav-itemed">
+        <li class="layui-nav-item" id="will" topage="list2/willlist.html"><a href="javascript:;">待开发票</a></li>
+        <li class="layui-nav-item" topage="list/alreadylist.html"><a href="javascript:;">已开发票</a></li>
+        <li class="layui-nav-item" topage="list/mergelist.html"><a href="javascript:;">合并发票</a></li>
+        <li class="layui-nav-item">
             <a href="javascript:;">发票管理</a>
             <dl class="layui-nav-child">
                 <dd><a href="javascript:;">今日发票</a></dd>
@@ -30,16 +30,27 @@
             </dl>
         </li>
         <li class="layui-nav-item"><a href="javascript:;">我要发券</a></li>
-        <li class="layui-nav-item"><a href="javascript:;">合开发票</a></li>
         <li class="layui-nav-item"><a href="javascript:;">优惠券管理</a></li>
         <li class="layui-nav-item"><a href="javascript:;">提交意见</a></li>
     </ul>
+    <iframe src="list2/willlist.html" class="maindiv" id="maindiv">
+    </iframe>
 </div>
 <script src="layui/lay/dest/layui.all.js"></script>
+<script src="jquery-1.9.0.min.js"></script>
 <script>
     ;
     !function () {
         var form = layui.form(), layer = layui.layer;
+        var element = layui.element();
+        $("#will").click();
+        element.on('nav(slide)', function(elem){
+//            console.log(elem); //得到当前点击的DOM对象
+            var $page=$(elem).attr("topage");
+            if($page!=null){
+                $("#maindiv").attr("src",$page);
+            }
+        });
     }();
 </script>
 
