@@ -172,6 +172,19 @@
 			<name>goeasy</name>
 			<url>http://maven.goeasy.io/content/repositories/releases/ </url>
 		</repository>
+		<repository>
+			<id>alimaven</id>
+			<name>aliyun maven</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>jcenter</id>
+			<name>jcenter Repository</name>
+			<url>http://jcenter.bintray.com/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
 	</repositories>
 
 	<build>
