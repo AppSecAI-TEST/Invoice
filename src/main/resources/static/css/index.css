@@ -24,18 +24,17 @@ div > form > .yzm {
 div > form > p {
 	height: 1px;
 	border-bottom: 1px solid #e5e5e5;
-	margin-left: 3%;
+	margin-left: 10px;
 }
-div > form > .inputs > span {
+.span {
 	line-height: 40px;
 	font-family: microsoft yahei;
 	padding-left: 10px;
-	width: 40px;
+	margin-right: 30px;
 }
 div > form > .inputs > input{
 	height: 30px;
 	border:none;
-	margin-left: 30px;
 	width: 70%;
 	font-size: 16px;
 	outline: none
