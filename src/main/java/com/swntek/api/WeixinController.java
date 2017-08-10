@@ -144,7 +144,7 @@ public class WeixinController extends WeixinControllerSupport {
         OauthAPI oauthAPI = new OauthAPI(apiConfig);
         System.out.println("code"+code+"shopid:"+shopid);
         if(code ==null) {
-            String wxauthurl = oauthAPI.getOauthPageUrl(Constact.baseurl+"weixin/auth", OauthScope.SNSAPI_USERINFO, shopid);
+            String wxauthurl = oauthAPI.getOauthPageUrl(Constact.baseurl+"weixin/auth", OauthScope.SNSAPI_BASE, shopid);
             System.out.println("wxauthurl"+wxauthurl);
             response.sendRedirect(wxauthurl);
             return;

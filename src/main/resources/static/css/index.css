@@ -30,6 +30,7 @@ div > form > .inputs > span {
 	line-height: 40px;
 	font-family: microsoft yahei;
 	padding-left: 10px;
+	width: 40px;
 }
 div > form > .inputs > input{
 	height: 30px;
