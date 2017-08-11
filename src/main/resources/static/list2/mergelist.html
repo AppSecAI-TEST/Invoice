@@ -9,7 +9,7 @@
 </head>
 <body style="margin-left: 30px;margin-top: 30px">
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-    <legend>待开发票</legend>
+    <legend>合开发票</legend>
 </fieldset>
 <input type="number" id="phone"><input type="button" value="搜索" onclick="return searchPhone()"><br/><br/>
 <input type="button" value="全选" id="allcheck" onclick="return allcheck()"><input type="button"
@@ -39,13 +39,13 @@
     </table>
 </div>
 <div class="layui-form">
-    <table class="layui-table" lay-skin="line">
-        <!--<colgroup>-->
-            <!--<col width="150">-->
-            <!--<col width="150">-->
-            <!--<col width="150">-->
-            <!--<col>-->
-        <!--</colgroup>-->
+    <table class="layui-table" lay-even lay-skin="line">
+        <colgroup>
+            <col width="150">
+            <col width="150">
+            <col width="200">
+            <col>
+        </colgroup>
         <thead>
         <tr>
             <th>选择</th>
