@@ -137,7 +137,7 @@
             console.log("data", data);
             for (var i = 0; i < data.length; i++) {
                 var obj = data[i];
-                var trhtml = '<tr><td>' + obj.user.phone + '</td><td><input  id="name_'+obj.id+'" type="hidden" value="'+obj.company.name+'">' + obj.company.name + '<button id="btn_'+obj.id+'" class="mcopy layui-btn" data-clipboard-target="name_'+obj.id+'" style="margin-left: 12px;padding: 3px;padding-left: 10px;padding-right: 10px">复制</button></td><td><input  id="duty_'+obj.id+'" type="hidden" value="'+obj.company.duty+'">' + obj.company.duty + '<button id="btn2_'+obj.id+'" class="mcopy layui-btn" data-clipboard-target="duty_'+obj.id+'" style="margin-left: 12px;padding: 3px;padding-left: 10px;padding-right: 10px">复制</button></td><td>' + obj.price + '</td></tr>';
+                var trhtml = '<tr><td>' + obj.user.phone + '</td><td><input  id="name_'+obj.id+'" type="hidden" value="'+obj.company.name+'">' + obj.company.name + '<button id="btn_'+obj.id+'" class="mcopy" data-clipboard-target="name_'+obj.id+'" style="margin-left: 12px;padding: 3px;padding-left: 10px;padding-right: 10px">复制</button></td><td><input  id="duty_'+obj.id+'" type="hidden" value="'+obj.company.duty+'">' + obj.company.duty + '<button id="btn2_'+obj.id+'" class="mcopy" data-clipboard-target="duty_'+obj.id+'" style="margin-left: 12px;padding: 3px;padding-left: 10px;padding-right: 10px">复制</button></td><td>' + obj.price + '</td></tr>';
                 $("#tmergebody").append(trhtml);
             }
             $(".mcopy").each(function(){

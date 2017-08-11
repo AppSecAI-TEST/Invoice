@@ -13,15 +13,15 @@
 </fieldset>
 <div class="layui-form">
     <table class="layui-table" lay-skin="line">
-        <!--<colgroup>-->
-            <!--<col width="100">-->
-            <!--<col width="150">-->
-            <!--<col width="150">-->
-            <!--<col width="150">-->
-            <!--<col width="150">-->
-            <!--<col width="150">-->
-            <!--<col>-->
-        <!--</colgroup>-->
+        <colgroup>
+            <col width="100">
+            <col width="150">
+            <col width="300">
+            <col width="300">
+            <col width="150">
+            <col width="150">
+            <col>
+        </colgroup>
         <thead>
         <tr>
             <th>编号</th>
@@ -67,7 +67,7 @@
             $("#tbody").empty();
             for (var i = 0; i < data.length; i++) {
                 var obj = data[i];
-                var trhtml = '<tr><td>' + obj.id + '</td><td>' + obj.user.phone + '</td><td><input id="m_' + obj.id + '" type="hidden" value="' + obj.company.name + '"/> ' + obj.company.name + '<button id="btn_' + obj.id + '" class="mcopy layui-btn" style="margin-left: 12px;padding: 1px;padding-left: 5px;padding-right: 5px" data-clipboard-target="m_' + obj.id + '">复制</button></td><td><input id="duty_' + obj.id + '" type="hidden" value="' + obj.company.duty + '"/> ' + obj.company.duty + '<button id="btn2_' + obj.id + '" class="mcopy layui-btn" data-clipboard-target="duty_' + obj.id + '" style="margin-left: 12px;padding: 2px;padding-left: 5px;padding-right: 5px">复制</button></td><td><input type="number" style="height: 40px;text-align: center" value="' + obj.price + '" id="price_' + obj.id + '"/></td><td>' + obj.createtime + '</td><td><button class="layui-btn layui-btn-small already" onclick="changestate(' + obj.id + ',2)">发票已开</button><button class="layui-btn layui-btn-small layui-btn-normal nextmerge" onclick="changestate(' + obj.id + ',1)">下次合开</button><button class="layui-btn layui-btn-small" style="background-color:#FF5722;">取消</button></td></tr>'
+                var trhtml = '<tr><td>' + obj.id + '</td><td>' + obj.user.phone + '</td><td><input id="m_' + obj.id + '" type="hidden" value="' + obj.company.name + '"/> ' + obj.company.name + '<button id="btn_' + obj.id + '" class="mcopy" style="margin-left: 12px;padding: 1px;padding-left: 5px;padding-right: 5px" data-clipboard-target="m_' + obj.id + '">复制</button></td><td><input id="duty_' + obj.id + '" type="hidden" value="' + obj.company.duty + '"/> ' + obj.company.duty + '<button id="btn2_' + obj.id + '" class="mcopy" data-clipboard-target="duty_' + obj.id + '" style="margin-left: 12px;padding: 2px;padding-left: 5px;padding-right: 5px">复制</button></td><td><input type="number" style="height: 35px;width:100px;text-align: center" value="' + obj.price + '" id="price_' + obj.id + '"/></td><td>' + obj.createtime + '</td><td><button class="layui-btn layui-btn-small already" onclick="changestate(' + obj.id + ',2)">发票已开</button><button class="layui-btn layui-btn-small layui-btn-normal nextmerge" onclick="changestate(' + obj.id + ',1)">下次合开</button><button class="layui-btn layui-btn-small" style="background-color:#FF5722;">取消</button></td></tr>'
                 $("#tbody").append(trhtml)
             }
             $(".mcopy").each(function () {
