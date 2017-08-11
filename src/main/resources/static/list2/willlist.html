@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title></title>
     <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="../css/will.css">
 </head>
 <body style="margin-left: 30px;margin-top: 30px">
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
@@ -63,7 +64,7 @@
             $("#tbody").empty();
             for (var i = 0; i < data.length; i++) {
                 var obj = data[i];
-                var trhtml = '<tr><td>' + obj.id + '</td><td>' + obj.user.phone + '</td><td><input id="m_' + obj.id + '" type="hidden" value="' + obj.company.name + '"/> ' + obj.company.name + '<button id="btn_' + obj.id + '" class="mcopy" data-clipboard-target="m_' + obj.id + '" style="margin-left: 12px;padding: 3px;padding-left: 10px;padding-right: 10px">复制</button></td><td><input id="duty_' + obj.id + '" type="hidden" value="' + obj.company.duty + '"/> ' + obj.company.duty + '<button id="btn2_' + obj.id + '" class="mcopy" data-clipboard-target="duty_' + obj.id + '" style="margin-left: 12px;padding: 3px;padding-left: 10px;padding-right: 10px">复制</button></td><td><input type="number" style="height: 40px" value="' + obj.price + '" id="price_' + obj.id + '"/></td><td>' + obj.createtime + '</td><td><button class="layui-btn layui-btn-small already" onclick="changestate(' + obj.id + ',2)">发票已开</button><button class="layui-btn layui-btn-small layui-btn-normal nextmerge" onclick="changestate(' + obj.id + ',1)">下次合开</button><button class="layui-btn layui-btn-small" style="background-color:#FF5722;">取消</button></td></tr>'
+                var trhtml = '<tr><td>' + obj.id + '</td><td>' + obj.user.phone + '</td><td><input id="m_' + obj.id + '" type="hidden" value="' + obj.company.name + '"/> ' + obj.company.name + '<button id="btn_' + obj.id + '" class="mcopy layui-btn" data-clipboard-target="m_' + obj.id + '" style="margin-left: 12px;padding: 3px;padding-left: 10px;padding-right: 10px">复制</button></td><td><input id="duty_' + obj.id + '" type="hidden" value="' + obj.company.duty + '"/> ' + obj.company.duty + '<button id="btn2_' + obj.id + '" class="mcopy layui-btn" data-clipboard-target="duty_' + obj.id + '" style="margin-left: 12px;padding: 3px;padding-left: 10px;padding-right: 10px">复制</button></td><td><input type="number" style="height: 40px;text-align: center" value="' + obj.price + '" id="price_' + obj.id + '"/></td><td>' + obj.createtime + '</td><td><button class="layui-btn layui-btn-small already" onclick="changestate(' + obj.id + ',2)">发票已开</button><button class="layui-btn layui-btn-small layui-btn-normal nextmerge" onclick="changestate(' + obj.id + ',1)">下次合开</button><button class="layui-btn layui-btn-small" style="background-color:#FF5722;">取消</button></td></tr>'
                 $("#tbody").append(trhtml)
             }
             $(".mcopy").each(function () {
@@ -89,7 +90,6 @@
     ;
     !function () {
         var form = layui.form(), layer = layui.layer;
-        layer.alert('tt')
     }();
 </script>
 </body>
